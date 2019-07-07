@@ -8,12 +8,21 @@ Create an array of strings called `colors` that contain "orange", "red", "yellow
 
 Then, using array subscripting and string interpolation, print out the String `"orange, yellow, and lavender are some of my favorite colors"`.
 
+print("\(colors[0]), \(colors[2]), and \(colors[4]) are some of my favorite colors")
+
 
 ## Question 2
 
 Remove "Illinois" and "Kansas" from the array below.
 
 `var westernStates = ["California", "Oregon", "Washington", "Idaho", "Illinois", "Kansas"]`
+
+var westernStates = ["California", "Oregon", "Washington", "Idaho", "Illinois", "Kansas"]
+
+for _ in westernStates where westernStates.count > 4 {
+westernStates.popLast()
+}
+print(westernStates)
 
 
 ## Question 3
@@ -22,6 +31,16 @@ Iterate through the array below. For each state, print out the name of the state
 
 `let moreStates = ["Hawaii", "New Mexico", "Alaska", "Montana", "Texas", "New York", "Florida"]`
 
+let moreStates = ["Hawaii", "New Mexico", "Alaska", "Montana", "Texas", "New York", "Florida"]
+
+for (index, name) in moreStates.enumerated() {
+if index == 0 || index == 2 {
+print("\(name): is NOT in the continental United States.")
+} else {
+print("\(name): is in the continental United States.")
+}
+
+}
 
 ## Question 4
 
@@ -29,10 +48,33 @@ Print out how many non-whitespace characters are in `myString`:
 
 `let myString = "This is good practice with Strings!"`
 
+let myString = "This is good practice with Strings!"
+let myStringArray = Array(myString)
+var counter = 0
+
+for i in myStringArray {
+if i == " " {
+counter += 1
+}
+}
+print(counter)
+
 Iterate through the array below. For each sentence, print out how many non-whitespace characters are in it.
 
 `let myFavoriteQuotes = ["To be or not to be, that is the question.", "The only source of knowledge is experience.", "Mr. Gorbachev, tear down this wall!", "Four score and twenty years ago..."]`
 
+let myFavoriteQuotes = ["To be or not to be, that is the question.", "The only source of knowledge is experience.", "Mr. Gorbachev, tear down this wall!", "Four score and twenty years ago..."]
+var counter = 0
+
+for i in myFavoriteQuotes {
+for j in i {
+if j == " " {
+counter += 1
+}
+}
+print("\"\(i)\" This sentence has \(counter) blank spaces")
+counter = 0
+}
 
 ## Question 5
 
@@ -42,6 +84,21 @@ Iterate through `garden` and place any 🌷 that you find into the `basket`. Rep
 var garden = ["dirt","🌷","dirt","🌷","dirt","dirt","🌷","dirt","🌷","dirt"]
 var basket = [String]()
 ```
+
+var garden = ["dirt","🌷","dirt","🌷","dirt","dirt","🌷","dirt","🌷","dirt"]
+var basket = [String]()
+var counter = 0
+
+for i in garden {
+if i == "🌷" {
+basket = basket + [i]
+}
+garden[counter] = "dirt"
+counter += 1
+}
+print(basket)
+print(garden)
+
 
 ## Question 6
 
@@ -54,6 +111,14 @@ The below array represents an unfinished batting lineup for a baseball team. **Y
 
 `var battingLineup = ["Reyes", "Jeter", "Ramirez", "Pujols","Griffey","Thomas","Jones", "Rodriguez"]`
 
+var battingLineup = ["Reyes", "Jeter", "Ramirez", "Pujols","Griffey","Thomas","Jones", "Rodriguez"]
+battingLineup.append("Suzuki")
+battingLineup[1] = "Tejada"
+battingLineup[5] = "Guerrero"
+battingLineup.insert("Reyes", at: 7)
+battingLineup.remove(at: 0)
+
+
 
 ## Question 7
 
@@ -61,6 +126,21 @@ Given an array of Ints, find out if it contains a target number.
 
 (The built-in `contains(_:)` function will do this, but you aren't allowed to use it for this exercise.)
 
+
+var numbers = [4,2,6,73,32,4,2,1]
+var target = 32
+var counter = 0
+
+for i in numbers {
+if i == target {
+counter += 1
+}
+}
+if counter > 0 {
+print("true")
+} else {
+print("false")
+}
 
 ```swift
 var numbers: [Int]
@@ -99,6 +179,16 @@ let arrayOfNumbers: [Int] = (1...100).map{ _ in Int.random(in: 0...200)}.map{Int
 //This creates an array of 100 numbers in between 0 and 200.  For now, you don't need to worry about how it does that.
 ```
 
+let arrayOfNumbers: [Int] = (1...100).map{ _ in Int.random(in: 0...200)}.map{Int($0)}
+var counter = 0
+
+for i in arrayOfNumbers {
+if i > counter {
+counter = i
+}
+}
+print(counter)
+
 
 ## Question 9
 
@@ -110,12 +200,31 @@ let arrayOfNumbers: [Int] = (1...100).map{ _ in Int.random(in: 0...200)}.map{Int
 //This creates an array of 100 numbers in between 0 and 200.  For now, you don't need to worry about how it does that.
 ```
 
+let arrayOfNumbers: [Int] = (1...100).map{ _ in Int.random(in: 0...200)}.map{Int($0)}
+var counter = Int(FP_INFINITE)
+
+for i in arrayOfNumbers {
+if i < counter {
+counter = i
+}
+}
+print(counter)
+
+
 
 ## Question 10
 
 Iterate through `secondListOfNumbers`, and print out all the odd numbers.
 
 `var secondListOfNumbers = [19,13,14,19,101,10000,141,404]`
+
+var secondListOfNumbers = [19,13,14,19,101,10000,141,404]
+
+for i in secondListOfNumbers {
+if i % 2 == 1{
+print(i)
+}
+}
 
 
 ## Question 11
@@ -124,12 +233,28 @@ Iterate through `thirdListOfNumbers`, and print out the sum.
 
 `var thirdListOfNumbers = [11, 26, 49, 61, 25, 40, 74, 3, 22, 23]`
 
+var thirdListOfNumbers = [11, 26, 49, 61, 25, 40, 74, 3, 22, 23]
+var sum = 0
+
+for i in thirdListOfNumbers {
+sum += i
+}
+print(sum)
+
 
 ## Question 12
 
 Iterate through `thirdListOfNumbers`, and print out the sum of all the even numbers.
 
 `var thirdListOfNumbers = [11, 26, 49, 61, 25, 40, 74, 3, 22, 23]`
+
+var thirdListOfNumbers = [11, 26, 49, 61, 25, 40, 74, 3, 22, 23]
+
+for i in thirdListOfNumbers {
+if i % 2 == 0 {
+print(i)
+}
+}
 
 
 ## Question 13
@@ -142,6 +267,23 @@ var listTwo = [18, 94, 48, 6, 42, 68, 79, 76, 13, 7]
 var sharedElements = [Int]()
 ```
 
+var listOne = [28, 64, 7, 96, 13, 32, 94, 11, 80, 68]
+var listTwo = [18, 94, 48, 6, 42, 68, 79, 76, 13, 7]
+var sharedElements = [Int]()
+var counter = 0
+
+for i in listOne {
+for j in listTwo {
+if i == j {
+sharedElements.append(i)
+counter += 1
+}
+}
+}
+print(sharedElements.count)
+//OR
+print(counter)
+
 
 ## Question 14
 
@@ -152,6 +294,19 @@ var dupeFriendlyList = [4,2,6,2,2,6,4,9,2,1]
 var noDupeList: [Int] = []
 ```
 
+var dupeFriendlyList = [4,2,6,2,2,6,4,9,2,1]
+var noDupeList: [Int] = []
+
+for i in dupeFriendlyList {
+if noDupeList.contains(i){
+continue
+} else {
+noDupeList.append(i)
+}
+}
+print(noDupeList)
+
+
 ## Question 15
 
 Find the second smallest number in an Array of Ints
@@ -159,11 +314,32 @@ Find the second smallest number in an Array of Ints
 `let arrayOfNumbers: [Int] = (1...100).map{ _ in Int.random(in: 0...200)}.map{Int($0)}`
 
 
+let arrayOfNumbers: [Int] = (1...100).map{ _ in Int.random(in: 0...200)}.map{Int($0)}
+let sortedArray = arrayOfNumbers.sorted()
+var emptyArray: [Int] = []
+
+for i in sortedArray {
+if emptyArray.contains(i) == false {
+emptyArray.append(i)
+}
+}
+print(emptyArray)
+print(emptyArray[1])
+
 ## Question 16
 
 If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
 
 Find the sum of all the multiples of 3 or 5 below 1000.
+
+var sum = 0
+
+for i in 1..<1000 {
+if i % 3 == 0 || i % 5 == 0 {
+sum += i
+}
+}
+print(sum)
 
 
 ## Question 17
@@ -181,6 +357,17 @@ Identify if there are 3 integers that sum to 10 in the following array. If so, p
 
 `var tripleSumArr = [-20,-14, -8,-5,-3,-2,1,2,3,4,9,15,20,30]`
 
+var tripleSumArr = [-20,-14, -8,-5,-3,-2,1,2,3,4,9,15,20,30]
+var target = 10
+
+for i in tripleSumArr {
+for j in tripleSumArr {
+let complement = target - (i + j)
+if tripleSumArr.contains(complement){
+print("(\(i),\(j),\(complement))")
+}
+}
+}
 
 ## Question 19
 
@@ -189,6 +376,22 @@ Given an array of Strings, find the the String with the most "a"s in it.
 input: `["apes", "abba", "apple"]`
 
 output: `"abba"`
+
+var input = ["apes", "abba", "apple"]
+var counter = 0
+
+
+for i in input {
+counter = 0
+for j in i {
+if j == "a" {
+counter += 1
+}
+}
+print(counter)
+}
+
+//LOST AFTER THAT
 
 
 ## Question 20
@@ -199,6 +402,26 @@ Input: `[[2,4,1],[3,0],[9,3]]`
 
 Output: `[9,3]`
 
+let array1 = [2,4,1]
+let array2 = [3,0]
+let array3 = [9,3]
+let arrayOfArrays = [array1, array2, array3]
+var sum = 0
+var counter = 0
+
+for i in arrayOfArrays {
+for j in i {
+sum += j
+if sum > counter {
+counter = j
+}
+}
+sum = 0
+}
+print(arrayOfArrays[counter - 1])
+
+\\THIS IS NOT RIGHT
+
 
 ## Question 21
 
@@ -207,6 +430,16 @@ Given an Array of Tuples of type `(Int, Int)`, create an array containing all th
 Input: `[(4,2), (-3,-3), (1,1), (3,9)]`
 
 Output: `[(-3,-3), (1,1)]`
+
+let input = [(4,2), (-3,-3), (1,1), (3,9)]
+var tuppleArray: [(Int, Int)] = []
+
+for i in input {
+if i.0 == i.1 {
+tuppleArray.append(i)
+}
+}
+print(tuppleArray)
 
 
 ## Question 22
@@ -217,6 +450,20 @@ Input: `[true, false, true, true]`
 
 Output: `false`
 
+let input = [true, false, true, true]
+var allAreTrue: [Bool] = []
+
+for i in input {
+if i == true {
+allAreTrue.append(i)
+}
+}
+if input.count == allAreTrue.count {
+print("true")
+} else {
+print("false")
+}
+
 
 ## Question 23
 
@@ -225,6 +472,20 @@ Given an Array of Ranges of Ints, create an array that has all the values from a
 Input: `[0..<3 , 2..<10, -4..<6, 13..<14]`
 
 Output: `[-4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10,13]`
+
+let arrayOfRanges = [0..<3 , 2..<10, -4..<6, 13..<14]
+var newRange: [Int] = []
+
+for i in arrayOfRanges {
+for j in i {
+if newRange.contains(j) {
+continue
+} else {
+newRange.append(j)
+}
+}
+}
+print(newRange.sorted())
 
 
 ## Question 24
@@ -242,12 +503,30 @@ Print out each element in `myMatrix`
 
 `var myMatrix = [[10, 14, 12], [91, 1, 9], [31, 3, 21]]`
 
+var myMatrix = [[10, 14, 12], [91, 1, 9], [31, 3, 21]]
+
+for i in myMatrix {
+for j in i {
+print(j)
+}
+}
+
 
 ## Question 26
 
 Print out the sum of the diagonals of `myMatrix`.
 
 `var myMatrix = [[10, 14, 12], [91, 1, 9], [31, 3, 21]]`
+
+var myMatrix = [[10, 14, 12], [91, 1, 9], [31, 3, 21]]
+var sum = 0
+
+for i in myMatrix {
+for j in i {
+sum += j
+}
+}
+print(sum)
 
 
 ## Question 27
@@ -257,3 +536,28 @@ Using for loops, rotate `matrixToRotate` 90 degrees.
 var matrixToRotate = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 
 ![Matrix Rotation](images/rotated_matrix.jpeg)
+
+var matrixToRotate = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+
+var blankMatrix: [[Int]] = [[],[],[]]
+var counter = 0
+
+
+for i in matrixToRotate {
+for j in matrixToRotate {
+print([i][j])
+}
+}
+
+
+blankMatrix[counter].append(1)
+print(blankMatrix)
+
+for i in matrixToRotate {
+blankMatrix.append(i)
+}
+blankMatrix.remove(at: [0][0])
+blankMatrix.remove(at: [0][0])
+blankMatrix.remove(at: [0][0])
+print(blankMatrix)
+//WRONG
